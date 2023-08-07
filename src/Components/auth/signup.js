@@ -5,7 +5,7 @@ import {useSpring, animated} from 'react-spring';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import Navbar from "../header";
-import backendUrl from "../../config/Constants";
+import backendUrl from "../config/Constants";
 
 const useStyles = makeStyles((theme) => ({
     container: {

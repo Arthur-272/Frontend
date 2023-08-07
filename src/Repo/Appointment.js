@@ -1,5 +1,5 @@
 import axios from "axios";
-import backendUrl from "../../src/config/Constants";
+import backendUrl from "../Components/config/Constants";
 
 export class AppointmentRepo {
   async getAppointments() {

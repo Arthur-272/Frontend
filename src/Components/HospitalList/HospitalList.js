@@ -4,7 +4,7 @@ import {
   HospitalCard,
   Name,
   Address,
-  ButtonConntainer,
+  Button,
 } from "./HospitalListStyle";
 import { useEffect, useState } from "react";
 import { HospitalRepo } from "../../Repo/Hospitals";
@@ -28,7 +28,7 @@ const HospitalList = () => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       {!hospitals.length ? (
         <div
           style={{
@@ -54,7 +54,7 @@ const HospitalList = () => {
                 <HospitalCard key={key}>
                   <Name>{hospital.name}</Name>
                   <Address>{hospital.address}</Address>
-                  <button
+                  <Button
                     onClick={() =>
                       navigate("/hospital", {
                         state: {
@@ -73,7 +73,7 @@ const HospitalList = () => {
                     color=""
                   >
                     View
-                  </button>
+                  </Button>
                 </HospitalCard>
               );
             })}

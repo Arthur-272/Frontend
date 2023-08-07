@@ -4,10 +4,9 @@ import {
   DoctorListContainer,
   DoctorCard,
   DoctorName,
-  HospitalName,
-  ButtonConntainer,
   Designation,
   Info,
+  Button
 } from "./HospitalStyle";
 import { useEffect, useState } from "react";
 import { DoctorsRepo } from "../../Repo/Doctors";
@@ -38,7 +37,7 @@ const Hospital = (props) => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <Name>
         <b>Welcome to, {name} !</b>
       </Name>
@@ -71,7 +70,7 @@ const Hospital = (props) => {
                     {doctor.name} {doctor.name} ({doctor.degree}){" "}
                   </DoctorName>
                   <Designation>{doctor.designation}</Designation>
-                  <button
+                  <Button
                     onClick={() =>
                       navigate("/doctor", {
                         state: {
@@ -88,7 +87,7 @@ const Hospital = (props) => {
                     color=""
                   >
                     Visit
-                  </button>
+                  </Button>
                 </DoctorCard>
               );
             })}

@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppointmentRepo } from "../../../Repo/Appointment";
 import {
   ListContainer,
@@ -9,6 +8,7 @@ import {
   PatientName,
   AppointmentDateAndTime,
   Reshedular,
+  CancelButton,
 } from "./CancelAppointmentStyles";
 
 const CancelAppointment = (props) => {
@@ -37,6 +37,10 @@ const CancelAppointment = (props) => {
     const res = await appointmentRepo.cancelAppointment(appointmendId);
     if (res === 200) {
       setSuccess(true);
+      // Refresh the page after 2 seconds (2000 milliseconds)
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
 
@@ -51,7 +55,7 @@ const CancelAppointment = (props) => {
           <ListContainer>
             {appointments.map((appointment) => {
               return (
-                <AppointmentCard>
+                <AppointmentCard key={appointment._id}>
                   <HospitalName>Hospital : {appointment.hospital}</HospitalName>
                   <DoctorName>Doctor : {appointment.doctorName}</DoctorName>
                   <PatientName>
@@ -63,9 +67,9 @@ const CancelAppointment = (props) => {
                   <AppointmentDateAndTime>
                     Time : {appointment.appointmentTime}
                   </AppointmentDateAndTime>
-                  <button onClick={() => onCancelClick(appointment._id)}>
+                  <CancelButton onClick={() => onCancelClick(appointment._id)}>
                     Cancel
-                  </button>
+                  </CancelButton>
                 </AppointmentCard>
               );
             })}
@@ -83,7 +87,9 @@ const CancelAppointment = (props) => {
             </Reshedular>
           )}
           {!success && (
-            <button onClick={() => onConfirmClick()}>Confirm</button>
+            <CancelButton onClick={() => onConfirmClick()}>
+              Confirm
+            </CancelButton>
           )}
         </>
       )}
