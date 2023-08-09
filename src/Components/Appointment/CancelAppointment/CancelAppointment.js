@@ -13,6 +13,7 @@ import {
 
 const CancelAppointment = (props) => {
   const appointmentRepo = new AppointmentRepo();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const [appointments, setAppointments] = useState([]);
   const [cancelClicked, setCancelClicked] = useState(false);
@@ -21,7 +22,7 @@ const CancelAppointment = (props) => {
 
   useEffect(() => {
     (async () => {
-      const res = await appointmentRepo.getAppointments();
+      const res = await appointmentRepo.getAppointments(user.email);
       if (res.length) {
         setAppointments(res);
       }

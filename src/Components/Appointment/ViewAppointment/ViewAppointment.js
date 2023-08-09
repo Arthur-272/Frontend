@@ -11,13 +11,15 @@ import {
 } from "./ViewAppointmentStyles";
 
 const ViewAppointment = (props) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const appointmentRepo = new AppointmentRepo();
 
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const res = await appointmentRepo.getAppointments();
+      const res = await appointmentRepo.getAppointments(user.email);
       if (res.length) {
         setAppointments(res);
       }
