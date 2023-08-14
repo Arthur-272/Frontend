@@ -183,11 +183,11 @@ const ProfileForm = () => {
           draggable: true,
           progress: undefined,
         });
-        setTimeout(() => {
-          resetForm(); // Call the resetForm function to update the state
-          // Auto-refresh after resetting
-          window.location.reload();
-        }, 0);
+        // setTimeout(() => {
+        //   resetForm(); // Call the resetForm function to update the state
+        //   // Auto-refresh after resetting
+        //   window.location.reload();
+        // }, 0);
       } catch (error) {
         toast.error('Error resetting patient data', {
           position: 'top-right',
