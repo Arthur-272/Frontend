@@ -50,9 +50,9 @@ const CancelAppointment = (props) => {
       if (res === 200) {
         setSuccess(true);
         // Refresh the page after 2 seconds (2000 milliseconds)
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
       } else {
         setError("Failed to cancel the appointment.");
       }
