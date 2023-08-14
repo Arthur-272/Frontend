@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Navbar from "./Components/header";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 
 const Home = () => {
     return (

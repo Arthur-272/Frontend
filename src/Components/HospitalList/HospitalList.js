@@ -1,4 +1,6 @@
-import React from "react";
+// Author: Gauravsinh Bharatsinh Solanki B00932065
+
+import React, { useEffect, useState } from "react";
 import {
   ListContainer,
   HospitalCard,
@@ -6,13 +8,14 @@ import {
   Address,
   Button,
 } from "./HospitalListStyle";
-import { useEffect, useState } from "react";
 import { HospitalRepo } from "../../Repo/Hospitals";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../header";
 
 const HospitalList = () => {
   const [hospitals, setHospitals] = useState([]);
+  const [filteredHospitals, setFilteredHospitals] = useState([]);
+  const [search, setSearch] = useState("");
   const hospitalRepo = new HospitalRepo();
   let navigate = useNavigate();
 
@@ -22,14 +25,43 @@ const HospitalList = () => {
 
       if (hospitalsArray) {
         setHospitals(hospitalsArray);
+        setFilteredHospitals(hospitalsArray);
       }
     })();
   }, []);
 
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    setFilteredHospitals(
+      hospitals.filter((hospital) =>
+        hospital.name.toLowerCase().includes(event.target.value.toLowerCase())
+      )
+    );
+  };
+
   return (
     <>
       <Navbar />
-      {!hospitals.length ? (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "10px",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search for hospital..."
+          value={search}
+          onChange={handleSearch}
+          style={{
+            height: "30px",
+            width: "50%",
+          }}
+        />
+      </div>
+      {!filteredHospitals.length ? (
         <div
           style={{
             marginTop: "150px",
@@ -38,7 +70,7 @@ const HospitalList = () => {
             alignItems: "center",
           }}
         >
-          Loading...
+          {search ? "No hospitals found..." : "Loading..."}
         </div>
       ) : (
         <div
@@ -49,7 +81,7 @@ const HospitalList = () => {
           }}
         >
           <ListContainer>
-            {hospitals.map((hospital, key = hospital._id) => {
+            {filteredHospitals.map((hospital, key = hospital._id) => {
               return (
                 <HospitalCard key={key}>
                   <Name>{hospital.name}</Name>
