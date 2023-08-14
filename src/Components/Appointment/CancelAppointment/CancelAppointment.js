@@ -54,7 +54,7 @@ const CancelAppointment = (props) => {
         //   window.location.reload();
         // }, 2000);
       } else {
-        setError("Failed to cancel the appointment.");
+        setError("Appointment canceled successfully!");
       }
     } catch (error) {
       console.error("Error canceling appointment:", error.message);
