@@ -293,9 +293,9 @@ const ProfileForm = () => {
           draggable: true,
           progress: undefined,
         });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
       } catch (error) {
         const data = error.response.data.body;
         console.log("data", data);
